@@ -1,0 +1,19 @@
+{
+  "name": "integrify-assignment",
+  "version": "1.0.0",
+  "description": "todo api assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jj-stigell/integrify-assignment.git"
+  },
+  "author": "js",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jj-stigell/integrify-assignment/issues"
+  },
+  "homepage": "https://github.com/jj-stigell/integrify-assignment#readme"
+}
