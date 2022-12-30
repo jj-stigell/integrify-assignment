@@ -6,7 +6,7 @@ const password: string = String(process.env.POSTGRES_PASSWORD);
 const database: string = String(process.env.POSTGRES_DATABASE);
 const host: string = String(process.env.POSTGRES_HOST_URL);
 const JWTSECRET: string =  String(process.env.JWTSECRET);
-const parsedPort: number = Number(process.env.BACKEND_PORT);
+const parsedPort: number = Number(process.env.PORT);
 const port: number = isNaN(parsedPort) ? 3000 : parsedPort;
 
 export = {
