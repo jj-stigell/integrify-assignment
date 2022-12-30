@@ -5,8 +5,10 @@
 - [Introduction](#introduction)
 - [Built with](#built-with)
 - [Running the program](#running-the-program)
+- [Authentication](#authentication)
 - [Endpoints](#endpoints)
 - [Migrations](#migrations)
+- [Missing features](#missing-features)
 
 ## Introduction
 
@@ -52,17 +54,290 @@ Start the program in development mode. Everytime file is changed, the program is
 $ npm run dev
 ```
 
+## Authentication
+
+API uses [bearer](https://datatracker.ietf.org/doc/html/rfc6750) tokens for authentication.
+
+Add the authorization header with the request for endpoints that require authentication.
+```
+Authorization: Bearer <JWT_token>
+```
+
 ## Endpoints
 
-Available endpoints:
+<details>
+<summary>Create a new user</summary>
+<br>
 
-- **POST** */api/v1/signup*: Sign up as an user of the system, using email & password.
-- **POST** */api/v1/signin*: Sign in using email & password. The system will return the JWT token that can be used to call the APIs that follow.
-- **PUT** */api/v1/changePassword*: Change user’s password. **Access requires valid JWT**
+Sign up as an user of the API, using email & password.
+
+**URL** : `/api/v1/signup`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Permissions required** : -
+
+**Data example** :
+```json
+{
+    "email": "myemail@email.com",
+    "password": "foobar123"
+}
+```
+
+### Success Responses
+
+**Condition** : -
+
+**Code** : `200 OK`
+
+**Content example** :
+```json
+{
+    "success": "new user created succesfully"
+}
+```
+
+### Error Response
+
+**Condition** : Email and/or password not send with the request.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+```json
+{
+    "error": "email or password missing"
+}
+```
+
+### Or
+
+**Condition** : Unexpected error occurs during database call or hashing. Message can vary depending on the error.
+
+**Code** : `500 INTERNAL SERVER ERROR`
+
+**Content** :
+```json
+{
+    "error": "message"
+}
+```
+
+<br>
+</details>
+
+
+<details>
+<summary>Sign in</summary>
+<br>
+
+Sign in using email & password.
+The API will return the JWT token that can be used to call the APIs that follow.
+
+**URL** : `/api/v1/signin`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Permissions required** : -
+
+**Data example** :
+```json
+{
+    "email": "myemail@email.com",
+    "password": "foobar123"
+}
+```
+
+### Success Responses
+
+**Condition** : -
+
+**Code** : `200 OK`
+
+**Content example** :
+```json
+{
+    "success": "new user created succesfully"
+}
+```
+
+### Error Response
+
+**Condition** : Email and/or password not send with the request.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+```json
+{
+    "error": "email or password missing"
+}
+```
+
+### Or
+
+**Condition** : Email not found.
+
+**Code** : `404 NOT FOUND`
+
+**Content** :
+```json
+{
+    "error": "user with an email address {email} not found"
+}
+```
+
+### Or
+
+**Condition** : Password incorrect.
+
+**Code** : `403 FORBIDDEN`
+
+**Content** :
+```json
+{
+    "error": "password incorrect"
+}
+```
+### Or
+
+**Condition** : Unexpected error occurs during database call or hashing. Message can vary depending on the error.
+
+**Code** : `500 INTERNAL SERVER ERROR`
+
+**Content** :
+```json
+{
+    "error": "message"
+}
+```
+
+<br>
+</details>
+
+
+<details>
+<summary>Change password</summary>
+<br>
+
+Change user’s password.
+
+**URL** : `/api/v1/changePassword`
+
+**Method** : `PUT`
+
+**Auth required** : YES
+
+**Permissions required** : -
+
+**Data example** :
+```json
+{
+    "password": "foobar123",
+    "newPassword": "123foobar"
+}
+```
+
+### Success Responses
+
+**Condition** : -
+
+**Code** : `200 OK`
+
+**Content example** :
+```json
+{
+    "success": "password changed succesfully"
+}
+```
+
+### Error Response
+
+**Condition** : Current password and/or new password not send with the request.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+```json
+{
+    "error": "current password or new password missing"
+}
+```
+
+### Or
+
+**Condition** : Current password and new password are equal.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+```json
+{
+    "error": "new password cannot be same as current password"
+}
+```
+
+### Or
+
+**Condition** : User with an id not found.
+
+**Code** : `404 NOT FOUND`
+
+**Content** :
+```json
+{
+    "error": "user with an id {userId} not found"
+}
+```
+
+### Or
+
+**Condition** : Current password incorrect.
+
+**Code** : `403 FORBIDDEN`
+
+**Content** :
+```json
+{
+    "error": "current password incorrect"
+}
+```
+
+### Or
+
+**Condition** : Unexpected error occurs during database call or hashing. Message can vary depending on the error.
+
+**Code** : `500 INTERNAL SERVER ERROR`
+
+**Content** :
+```json
+{
+    "error": "message"
+}
+```
+
+<br>
+</details>
+
+
+
+
+
 - **GET** */api/v1/todos?status=[status]*: Get a list of todo items. Optionally, a status query param can be included to return only items of specific status. If not present, return all items. **Access requires valid JWT**
 - **POST** */api/v1/todos*: Create a new todo item. **Access requires valid JWT**
 - **PUT** */api/v1/todos/:id*: Update a todo item. **Access requires valid JWT**
 - **DELETE** */api/v1/todos/:id*: Delete a todo item. **Access requires valid JWT**
+
+
+
+
+
+
 
 ## Migrations
 
@@ -97,3 +372,9 @@ Run one migration down:
 ```
 $ npm run migration:down
 ```
+
+## Missing features
+
+- tests
+- input validation
+- check if email already taken
