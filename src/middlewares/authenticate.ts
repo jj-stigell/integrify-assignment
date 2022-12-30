@@ -6,6 +6,13 @@ import * as jwt from 'jsonwebtoken';
 // project imports
 import config from '../configs/config';
 
+/**
+ * Middleware function that authenticates a user's request based on a JWT.
+ * Add user id from the JWT to the request.
+ * @param {RequestIncludeUser} req The request object, which includes the user id in the request context.
+ * @param {Response} res The response object.
+ * @param {NextFunction} next Express next middleware function
+ */
 const authenticate = async (req: RequestIncludeUser, res: Response, next: NextFunction): Promise<unknown> => {
   const authHeader: string | undefined = req.headers['authorization'];
 

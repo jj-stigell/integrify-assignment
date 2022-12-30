@@ -60,7 +60,7 @@ $ npm run dev
 
 API uses [bearer](https://datatracker.ietf.org/doc/html/rfc6750) tokens for authentication.
 
-Add the authorization header with the request for endpoints that require authentication.
+Add the authorization header for endpoints that require authentication.
 ```
 Authorization: Bearer <JWT_token>
 ```

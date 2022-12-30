@@ -1,6 +1,11 @@
 // third party
 import { QueryInterface, DataTypes, Transaction } from 'sequelize';
 
+/**
+ * Migration for initializing the database with tables user and todo.
+ * Also creates index for user_id in the todo table and index for email
+ * in the table user. Migration down drops tables and sdeletes created enum type from db.
+ */
 export default {
   up: async (queryInterface: QueryInterface): Promise<void> => {
     const transaction: Transaction = await queryInterface.sequelize.transaction();
@@ -82,5 +87,5 @@ export default {
       await transaction.rollback();
       console.log(error);
     }
-  },
+  }
 };
