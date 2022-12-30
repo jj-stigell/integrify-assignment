@@ -165,7 +165,7 @@ The API will return the JWT token that can be used to call the APIs that follow.
 **Content example** :
 ```json
 {
-    "success": "new user created succesfully"
+    "token": "{token}"
 }
 ```
 
