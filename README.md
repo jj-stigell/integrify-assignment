@@ -15,7 +15,7 @@ One user can create multiple todo items and one todo item can only belong to a s
 
 ## Built with
 
-- [Express](https://expressjs.com/) with [typescript](https://www.typescriptlang.org/) and [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/) with [typescript](https://www.typescriptlang.org/) and [Node.js](https://nodejs.org/en/) [v16.15.1](https://nodejs.org/tr/blog/release/v16.15.1/)
 - Database [PostgreSQL](https://www.postgresql.org/) using [pg client](https://www.npmjs.com/package/pg) and [Sequelize](https://sequelize.org/) ORM
 - Password hashing with [bcrypt](https://www.npmjs.com/package/bcrypt)
 - Authorization with [JSON web tokens](https://www.npmjs.com/package/jsonwebtoken)
