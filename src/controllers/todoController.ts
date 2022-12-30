@@ -72,7 +72,8 @@ export const createTodo = async (req: RequestIncludeUser, res: Response): Promis
  * @returns A promise that resolves to the response object.
  */
 export const updateTodo = async (req: RequestIncludeUser, res: Response): Promise<Response> => {
-  const { name, description, status, id }: Todo = req.body;
+  const { name, description, status }: Todo = req.body;
+  const id: number = Number(req.params.id);
   const userId: number = req.user;
 
   if (!id) return res.status(400).send({
@@ -91,7 +92,7 @@ export const updateTodo = async (req: RequestIncludeUser, res: Response): Promis
     });
 
     if (todo.userId !== userId) return res.status(401).send({
-      error: `todo with an id ${id} not found`
+      error: `you are not the owner of todo id ${id}`
     });
 
     const updatedTodo: Todo = await todoService.updateTodo(id, name, description, status);
@@ -110,7 +111,7 @@ export const updateTodo = async (req: RequestIncludeUser, res: Response): Promis
  * @returns A promise that resolves to the response object.
  */
 export const deleteTodo = async (req: RequestIncludeUser, res: Response): Promise<Response> => {
-  const { id }: Todo = req.body;
+  const id: number = Number(req.params.id);
   const userId: number = req.user;
 
   if (!id) return res.status(400).send({
@@ -125,7 +126,7 @@ export const deleteTodo = async (req: RequestIncludeUser, res: Response): Promis
     });
 
     if (todo.userId !== userId) return res.status(401).send({
-      error: `todo with an id ${id} not found`
+      error: `you are not the owner of todo id ${id}`
     });
 
     await todoService.deleteTodo(id);
