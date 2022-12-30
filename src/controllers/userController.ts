@@ -57,7 +57,7 @@ export const signIn = async (req: Request, res: Response): Promise<Response> => 
 
     const compare: boolean = await hashCompare(password, user.password);
 
-    if (!compare) return res.status(401).send({
+    if (!compare) return res.status(403).send({
       error: 'password incorrect'
     });
 
@@ -104,7 +104,7 @@ export const changePassword = async (req: RequestIncludeUser, res: Response): Pr
   
     const compare: boolean = await hashCompare(password, user.password);
 
-    if (!compare) return res.status(401).send({
+    if (!compare) return res.status(403).send({
       error: 'current password incorrect'
     });
 
