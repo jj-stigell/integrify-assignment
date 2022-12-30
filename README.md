@@ -27,7 +27,7 @@ Install the necessary Node.js modules at the project root:
 $ npm install
 ```
 
-Set database credentials and other variables to the .env file at the project root:
+Create .env file to the project root and add database credentials and other variables to it:
 ```
 POSTGRES_USER=dbUserNameString
 POSTGRES_PASSWORD=dbPasswordString
