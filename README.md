@@ -274,6 +274,19 @@ Change user’s password.
 
 ### Or
 
+**Condition** : Authorization header not sent with the request, or invalid
+
+**Code** : `401 UNAUTHORIZED`
+
+**Content** :
+```json
+{
+    "error": "authorization token missing or invalid"
+}
+```
+
+### Or
+
 **Condition** : Current password and new password are equal.
 
 **Code** : `400 BAD REQUEST`
@@ -400,6 +413,19 @@ Get a list of todo items.
 
 ### Or
 
+**Condition** : Authorization header not sent with the request, or invalid
+
+**Code** : `401 UNAUTHORIZED`
+
+**Content** :
+```json
+{
+    "error": "authorization token missing or invalid"
+}
+```
+
+### Or
+
 **Condition** : No todos found.
 
 **Code** : `404 NOT FOUND`
@@ -482,6 +508,19 @@ Status must be one of following: NOTSTARTED, ONGOING, or COMPLETED.
 ```json
 {
     "error": "name or status missing"
+}
+```
+
+### Or
+
+**Condition** : Authorization header not sent with the request, or invalid
+
+**Code** : `401 UNAUTHORIZED`
+
+**Content** :
+```json
+{
+    "error": "authorization token missing or invalid"
 }
 ```
 
@@ -575,6 +614,19 @@ Name, description, and status are optional.
 
 ### Or
 
+**Condition** : Authorization header not sent with the request, or invalid
+
+**Code** : `401 UNAUTHORIZED`
+
+**Content** :
+```json
+{
+    "error": "authorization token missing or invalid"
+}
+```
+
+### Or
+
 **Condition** : Todo with an id not found.
 
 **Code** : `404 NOT FOUND`
@@ -652,6 +704,19 @@ Delete a todo item.
 ```json
 {
     "error": "todo id missing"
+}
+```
+
+### Or
+
+**Condition** : Authorization header not sent with the request, or invalid
+
+**Code** : `401 UNAUTHORIZED`
+
+**Content** :
+```json
+{
+    "error": "authorization token missing or invalid"
 }
 ```
 
