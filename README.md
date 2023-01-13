@@ -15,7 +15,7 @@
 Backend for a todo application that requires users to be logged in before they can call the APIs.
 One user can create multiple todo items and one todo item can only belong to a single user.
 
-Demo API running at https://todo-api-8qng.onrender.com/ (Running on free tier so give it minu or two to start up)
+Demo API running at https://todo-api-8qng.onrender.com/ (Running on free tier so give it minute or two to start up)
 
 ## Built with
 
